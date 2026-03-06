@@ -492,8 +492,9 @@ section.active {
     margin-left: -2rem;
 }
 
+/* skills section: use auto-fit so columns wrap on narrower screens */
 .resume-detail.skills .resume-list {
-    grid-template-columns: repeat(4, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     height: auto;
     overflow: visible;
 }
@@ -511,6 +512,19 @@ section.active {
 .resume-detail.skills .resume-item i {
     font-size: 8.5rem;
     transition: .5s;
+}
+
+/* scale down icons on smaller viewports for better fit */
+@media screen and (max-width: 768px) {
+    .resume-detail.skills .resume-item i {
+        font-size: 6rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .resume-detail.skills .resume-item i {
+        font-size: 5rem;
+    }
 }
 
 .resume-detail.skills .resume-item:hover i {
@@ -855,6 +869,11 @@ section {
     .contact-box .field-box {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* ensure skills grid stacks a single column on medium screens */
+    .resume-detail.skills .resume-list {
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -864,6 +883,11 @@ section {
     }
 
     .contact-box .field-box {
+        grid-template-columns: 1fr;
+    }
+
+    /* make skills show one column on very narrow screens */
+    .resume-detail.skills .resume-list {
         grid-template-columns: 1fr;
     }
 }
